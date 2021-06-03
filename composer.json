@@ -1,0 +1,21 @@
+{
+    "name": "jsalmoralp/riot-api_league-of-legends",
+    "description": "Librer\u0000a de PHP para usar de forma c\u0000moda la API de Riot (League of Legends)",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "raskan",
+            "email": "jsalmoralp@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "jsalmoralp\\RiotAPI\\Native\\": "src/Native",
+            "jsalmoralp\\RiotAPI\\RiotAPI\\": "src/RiotAPI",
+            "jsalmoralp\\RiotAPI\\Tests\\": "tests/"
+        }
+    }
+}
