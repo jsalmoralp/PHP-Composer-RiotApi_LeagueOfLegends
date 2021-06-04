@@ -40,7 +40,13 @@ class ChampionMastery_V4 {
     private function prepareSql_insertIntoChampionMasteryDto_fromObject(Mixed $object) : String {
         if (is_object($object) ) {
             if (!empty($object)) {
-                if (!isset($object->status->status_code)) {
+                if (isset($object->status->status_code)) {
+                    $infoString = "\n--- Info (Bad Object) ---\n";
+                    $infoString .= "[Status Code] = " . $object->status->status_code . "\n";
+                    $infoString .= "[Message]     = " . $object->status->message . "\n";
+                    $infoString .= "-------------------------\n";
+                    return $infoString;
+                } else if (isset($object->championPoints)) {
                     $this->championMastery = new ChampionMasteryDTO(
                         $this->plataformRouting->get_plataform(),
                         $object->championId,
@@ -55,9 +61,8 @@ class ChampionMastery_V4 {
                     );
                     return $this->querysChampionMastery->insertInto_ChampionMasteryDto($this->championMastery);
                 } else {
-                    $infoString = "\n--- Info (Bad Object) ---\n";
-                    $infoString .= "[Status Code] = " . $object->status->status_code . "\n";
-                    $infoString .= "[Message]     = " . $object->status->message . "\n";
+                    $infoString = "\n--- Bad (Unexpected Object) ---\n";
+                    $infoString .= "- El objeto tiene un contenido inesperado.\n";
                     $infoString .= "-------------------------\n";
                     return $infoString;
                 }
@@ -88,8 +93,8 @@ class ChampionMastery_V4 {
                 $infoString .= "-------------------------\n";
                 return $infoString;
             } else {
-                $infoString = "\n--- Bad (Bad Response) ---\n";
-                $infoString .= "- La respuesta esperada no es correcta.\n";
+                $infoString = "\n--- Bad (Unexpected Object) ---\n";
+                $infoString .= "- El objeto tiene un contenido inesperado.\n";
                 $infoString .= "-------------------------\n";
                 return $infoString;
             }
@@ -141,8 +146,8 @@ class ChampionMastery_V4 {
                 $infoString .= "-------------------------\n";
                 return $infoString;
             } else {
-                $infoString = "\n--- Bad (Bad Response) ---\n";
-                $infoString .= "- La respuesta esperada no es correcta.\n";
+                $infoString = "\n--- Bad (Unexpected Object) ---\n";
+                $infoString .= "- El objeto tiene un contenido inesperado.\n";
                 $infoString .= "-------------------------\n";
                 return $infoString;
             }

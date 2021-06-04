@@ -26,7 +26,13 @@ class Summoner_V4 {
     private function prepareSql_insertInto_fromObject(Mixed $object) : String {
         if (is_object($object) ) {
             if (!empty($object)) {
-                if (!isset($object->status->status_code)) {
+                if (isset($object->status->status_code)) {
+                    $infoString = "\n--- Info (Bad Object) ---\n";
+                    $infoString .= "[Status Code] = " . $object->status->status_code . "\n";
+                    $infoString .= "[Message]     = " . $object->status->message . "\n";
+                    $infoString .= "-------------------------\n";
+                    return $infoString;
+                } else if (isset($object->profileIconId)) {
                     $this->summoner = new SummonerDTO(
                         $this->plataformRouting->get_plataform(),
                         $object->id,
@@ -39,9 +45,8 @@ class Summoner_V4 {
                     );
                     return $this->querysSummoner->insertInto_fromSummonerDTO($this->summoner);
                 } else {
-                    $infoString = "\n--- Info (Bad Object) ---\n";
-                    $infoString .= "[Status Code] = " . $object->status->status_code . "\n";
-                    $infoString .= "[Message]     = " . $object->status->message . "\n";
+                    $infoString = "\n--- Bad (Unexpected Object) ---\n";
+                    $infoString .= "- El objeto tiene un contenido inesperado.\n";
                     $infoString .= "-------------------------\n";
                     return $infoString;
                 }
