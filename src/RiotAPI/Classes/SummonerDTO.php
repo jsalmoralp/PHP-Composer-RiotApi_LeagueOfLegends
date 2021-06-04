@@ -2,14 +2,14 @@
 namespace jsalmoralp\RiotAPI\RiotAPI\Classes;
 
 class SummonerDTO {
-    private $region;
-    private $id;
-    private $accountId;
-    private $puuid;
-    private $name;
-    private $profileIconId;
-    private $revisionDate;
-    private $summonerLevel;
+    private String $region;
+    private String $id;
+    private String $accountId;
+    private String $puuid;
+    private String $name;
+    private Int $profileIconId;
+    private Int $revisionDate;
+    private Int $summonerLevel;
 
     public function __construct(
         $region,

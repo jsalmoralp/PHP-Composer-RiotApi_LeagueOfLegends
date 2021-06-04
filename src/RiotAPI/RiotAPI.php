@@ -8,8 +8,8 @@ use jsalmoralp\RiotAPI\RiotAPI\Classes\SummonerDTO;
 
 class RiotAPI {
     
-    private $language;
-    private $plataform;
+    private Language $language;
+    private PlataformRouting $plataform;
 
     public function __construct(
         $lang = null,
@@ -19,11 +19,11 @@ class RiotAPI {
         $this->plataform = new PlataformRouting($plataform);
     }
     
-    public function class_Summoner_V4() : Summoner_V4 {
+    public function api_Summoner_V4() : Summoner_V4 {
         return new Summoner_V4($this->plataform);
     }
 
-    public function object_SummonerDTO($region, $id, $accountId, $puuid, $name, $profileIconId, $revisionDate, $summonerLevel) : SummonerDTO {
+    public function create_SummonerDTO($region, $id, $accountId, $puuid, $name, $profileIconId, $revisionDate, $summonerLevel) : SummonerDTO {
         return new SummonerDTO($region, $id, $accountId, $puuid, $name, $profileIconId, $revisionDate, $summonerLevel);
     }
 

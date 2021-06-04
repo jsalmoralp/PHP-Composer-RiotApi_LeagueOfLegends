@@ -3,7 +3,7 @@ namespace jsalmoralp\RiotAPI\Native\DB;
 
 use jsalmoralp\RiotAPI\RiotAPI\Classes\SummonerDTO;
 
-class SummonerDTOCrudConnection {
+class SummonerDTOQuerys {
     private ConnectionWithPDO $connection;
 
     public function __construct() {
@@ -24,18 +24,18 @@ class SummonerDTOCrudConnection {
         @$this->connection->execute($sqlInsertIntoDatabase);
         if (!$this->connection->get_query()) {
             $infoString = "\n--- Good (Insert To Database) ---\n";
-            $infoString .= "- Se a añadido el Summoner-V4 a la Base de Datos.\n";
+            $infoString .= "- Se a añadido el SummonerDTO a la Base de Datos.\n";
             $infoString .= "-------------------------\n";
             return $infoString;
         } else {
             $infoString = "\n--- Bad (Insert To Database) ---\n";
-            $infoString .= "- No se a añadido el Summoner-V4 a la Base de Datos.\n";
+            $infoString .= "- No se a añadido el SummonerDTO a la Base de Datos.\n";
             $infoString .= "-------------------------\n";
             return $infoString;
         }
     }
 
-    public function selectAll_wherePlataformRegion_whereAccountId(
+    public function selectAll_fromSummonerDto_whereRegion_whereAccountId(
         String $region,
         String $accountId
     ) {
@@ -46,7 +46,7 @@ class SummonerDTOCrudConnection {
         return $this->connection->get_query();
     }
 
-    public function selectAll_wherePlataformRegion_whereName(
+    public function selectAll_fromSummonerDto_whereRegion_whereName(
         String $region,
         String $name
     ) {
@@ -57,7 +57,7 @@ class SummonerDTOCrudConnection {
         return $this->connection->get_query();
     }
 
-    public function selectAll_wherePlataformRegion_wherePuuid(
+    public function selectAll_fromSummonerDto_whereRegion_wherePuuid(
         String $region,
         String $puuid
     ) {
@@ -68,7 +68,7 @@ class SummonerDTOCrudConnection {
         return $this->connection->get_query();
     }
 
-    public function selectAll_wherePlataformRegion_whereId(
+    public function selectAll_fromSummonerDto_whereRegion_whereId(
         String $region,
         String $id
     ) {

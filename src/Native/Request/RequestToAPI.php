@@ -1,12 +1,12 @@
 <?php
 namespace jsalmoralp\RiotAPI\Native\Request;
 
-class RequestAPIToJson {
+class RequestToAPI {
     private String $json;
     private Mixed $obj;
     private String $infoRequest;
 
-    public function getJson_fromUrl(String $url) : Mixed {
+    public function getObject_fromJsonUrl(String $url) : Mixed {
         $this->json = @file_get_contents($url);
         if (strpos($http_response_header[0], "200")) {
             $this->obj = json_decode($this->json);
@@ -19,10 +19,12 @@ class RequestAPIToJson {
             $this->infoRequest = $infoString;
             if (isset($this->obj->status->status_code)) {
                 $this->infoRequest .= "=== FINALY STATUS CODE -> " . $this->obj->status->status_code . " ===";
+                $this->infoRequest .= "=== FINALY STATUS MESSAGE -> " . $this->obj->status->message . " ===";
                 return $this->infoRequest;
             } elseif (isset($this->obj)) {
                 return $this->obj;
             } else {
+                $this->infoRequest .= "=== JsonDecode don't work ===";
                 return $this->infoRequest;
             }
         } elseif (strpos($http_response_header[0], "400")) {

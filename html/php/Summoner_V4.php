@@ -5,7 +5,7 @@ include_once __DIR__ . "/main.php";
 
 $summoner1 = new Summoner_V4();
 
-$info_summoner1 = $summoner1->get_byAccountId("99L5GQVrUbuVe2WdOf5ROldHRqD3u-7tmH37XA__MXGNAA");
+$info_summoner1 = $summoner1->getSummoner_byAccountId("99L5GQVrUbuVe2WdOf5ROldHRqD3u-7tmH37XA__MXGNAA");
 
 echo "\n**=** [Start] INFO QUERYS **=**\n";
 echo $info_summoner1;
@@ -32,7 +32,7 @@ echo "\n\n\n";
 
 $summoner2 = new Summoner_V4();
 
-$info_summoner2 = $summoner2->get_byName("raskan");
+$info_summoner2 = $summoner2->getSummoner_byName("raskan");
 
 echo "\n**=** [Start] INFO QUERYS **=**\n";
 echo $info_summoner2;
@@ -59,7 +59,7 @@ echo "\n\n\n";
 
 $summoner3 = new Summoner_V4();
 
-$info_summoner3 = $summoner3->get_byPuuid("fP6i5yBSg1rRCTA0ATjzm93q0SZD4cbhMYyPVZ_247d3z53HU2IT8X9Jusnq5xoshwmGaUOqekiSWw");
+$info_summoner3 = $summoner3->getSummoner_byPuuid("fP6i5yBSg1rRCTA0ATjzm93q0SZD4cbhMYyPVZ_247d3z53HU2IT8X9Jusnq5xoshwmGaUOqekiSWw");
 
 echo "\n**=** [Start] INFO QUERYS **=**\n";
 echo $info_summoner3;
@@ -86,7 +86,7 @@ echo "\n\n\n";
 
 $summoner4 = new Summoner_V4();
 
-$info_summoner4 = $summoner4->get_byId("7TqNXcEhEIWercpsSSxrEwQmVIEI3TLhTePBMKRafk1kp5w");
+$info_summoner4 = $summoner4->getSummoner_byId("7TqNXcEhEIWercpsSSxrEwQmVIEI3TLhTePBMKRafk1kp5w");
 
 echo "\n**=** [Start] INFO QUERYS **=**\n";
 echo $info_summoner4;
@@ -113,7 +113,7 @@ echo "\n\n\n";
 
 $summoner5 = new Summoner_V4();
 
-$info_summoner5 = $summoner5->get_byName("cacatua");
+$info_summoner5 = $summoner5->getSummoner_byName("cacatua");
 
 echo "\n**=** [Start] INFO QUERYS **=**\n";
 echo $info_summoner5;
