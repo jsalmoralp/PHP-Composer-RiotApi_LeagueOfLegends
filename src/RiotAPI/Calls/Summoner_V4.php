@@ -1,7 +1,7 @@
 <?php
 namespace jsalmoralp\RiotAPI\RiotAPI\Calls;
 
-use jsalmoralp\RiotAPI\Native\DB\SummonerDTOQuerys;
+use jsalmoralp\RiotAPI\Native\DB\Query\SummonerDTOQuerys;
 use jsalmoralp\RiotAPI\Native\Request\RequestToAPI;
 use jsalmoralp\RiotAPI\RiotAPI\Classes\PlataformRouting;
 use jsalmoralp\RiotAPI\RiotAPI\Classes\SummonerDTO;

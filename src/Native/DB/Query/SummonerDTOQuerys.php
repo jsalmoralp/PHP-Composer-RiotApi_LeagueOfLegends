@@ -1,6 +1,7 @@
 <?php
-namespace jsalmoralp\RiotAPI\Native\DB;
+namespace jsalmoralp\RiotAPI\Native\DB\Query;
 
+use jsalmoralp\RiotAPI\Native\DB\ConnectionWithPDO;
 use jsalmoralp\RiotAPI\RiotAPI\Classes\SummonerDTO;
 
 class SummonerDTOQuerys {

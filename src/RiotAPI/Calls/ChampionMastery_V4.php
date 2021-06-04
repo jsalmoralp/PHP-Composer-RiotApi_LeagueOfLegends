@@ -1,7 +1,7 @@
 <?php
 namespace jsalmoralp\RiotAPI\RiotAPI\Calls;
 
-use jsalmoralp\RiotAPI\Native\DB\ChampionMasteryDTOQuerys;
+use jsalmoralp\RiotAPI\Native\DB\Query\ChampionMasteryDTOQuerys;
 use jsalmoralp\RiotAPI\Native\Request\RequestToAPI;
 use jsalmoralp\RiotAPI\RiotAPI\Classes\ChampionMasteryDTO;
 use jsalmoralp\RiotAPI\RiotAPI\Classes\ChampionMasteryScore;
