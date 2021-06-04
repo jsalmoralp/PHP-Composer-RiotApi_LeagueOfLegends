@@ -12,14 +12,14 @@ class SummonerDTO {
     private Int $summonerLevel;
 
     public function __construct(
-        $region,
-        $id,
-        $accountId,
-        $puuid,
-        $name,
-        $profileIconId,
-        $revisionDate,
-        $summonerLevel
+        String $region,
+        String $id,
+        String $accountId,
+        String $puuid,
+        String $name,
+        Int $profileIconId,
+        Int $revisionDate,
+        Int $summonerLevel
     ) {
         $this->region = $region;
         $this->id = $id;
@@ -31,35 +31,35 @@ class SummonerDTO {
         $this->summonerLevel = $summonerLevel;
     }
 
-    public function get_region() {
+    public function get_region() : String {
         return $this->region;
     }
 
-    public function get_id() {
+    public function get_id() : String {
         return $this->id;
     }
 
-    public function get_accountId() {
+    public function get_accountId() : String {
         return $this->accountId;
     }
 
-    public function get_puuid() {
+    public function get_puuid() : String {
         return $this->puuid;
     }
 
-    public function get_name() {
+    public function get_name() : String {
         return $this->name;
     }
 
-    public function get_profileIconId() {
+    public function get_profileIconId() : Int {
         return $this->profileIconId;
     }
 
-    public function get_revisionDate() {
+    public function get_revisionDate() : Int {
         return $this->revisionDate;
     }
 
-    public function get_summonerLevel() {
+    public function get_summonerLevel() : Int {
         return $this->summonerLevel;
     }
 }

@@ -11,10 +11,8 @@ class Summoner_V4 {
     private RequestToAPI $requestToApi;
     private SummonerDTOQuerys $querysSummoner;
     private ?SummonerDTO $summoner;
-    private Mixed $object;
     
-
-    public function __construct($plataform = null) {
+    public function __construct(String $plataform = null) {
         $this->plataformRouting = new PlataformRouting($plataform);
         $this->requestToApi = new RequestToAPI();
         $this->querysSummoner = new SummonerDTOQuerys();
@@ -92,9 +90,9 @@ class Summoner_V4 {
             $url .= "/lol/summoner/v4/summoners/by-account/" . $accountId;
             $url .= "?api_key=" . $_ENV['API_RIOT_KEY'];
 
-            $this->object = $this->requestToApi->getObject_fromJsonUrl($url);
+            $object = $this->requestToApi->getObject_fromJsonUrl($url);
 
-            return $this->prepareSql_insertInto_fromObject($this->object);
+            return $this->prepareSql_insertInto_fromObject($object);
         } else {
             return $this->convertFromQueryToSummonerDTO($queryIsInMyDatabase);
         }
@@ -110,9 +108,9 @@ class Summoner_V4 {
             $url .= "/lol/summoner/v4/summoners/by-name/" . $name;
             $url .= "?api_key=" . $_ENV['API_RIOT_KEY'];
 
-            $this->object = $this->requestToApi->getObject_fromJsonUrl($url);
+            $object = $this->requestToApi->getObject_fromJsonUrl($url);
 
-            return $this->prepareSql_insertInto_fromObject($this->object);
+            return $this->prepareSql_insertInto_fromObject($object);
         } else {
             return $this->convertFromQueryToSummonerDTO($queryIsInMyDatabase);
         }
@@ -128,9 +126,9 @@ class Summoner_V4 {
             $url .= "/lol/summoner/v4/summoners/by-puuid/" . $puuid;
             $url .= "?api_key=" . $_ENV['API_RIOT_KEY'];
 
-            $this->object = $this->requestToApi->getObject_fromJsonUrl($url);
+            $object = $this->requestToApi->getObject_fromJsonUrl($url);
 
-            return $this->prepareSql_insertInto_fromObject($this->object);
+            return $this->prepareSql_insertInto_fromObject($object);
         } else {
             return $this->convertFromQueryToSummonerDTO($queryIsInMyDatabase);
         }
@@ -146,9 +144,9 @@ class Summoner_V4 {
             $url .= "/lol/summoner/v4/summoners/" . $id;
             $url .= "?api_key=" . $_ENV['API_RIOT_KEY'];
 
-            $this->object = $this->requestToApi->getObject_fromJsonUrl($url);
+            $object = $this->requestToApi->getObject_fromJsonUrl($url);
 
-            return $this->prepareSql_insertInto_fromObject($this->object);
+            return $this->prepareSql_insertInto_fromObject($object);
         } else {
             return $this->convertFromQueryToSummonerDTO($queryIsInMyDatabase);
         }

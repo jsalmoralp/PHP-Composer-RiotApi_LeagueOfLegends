@@ -7,24 +7,24 @@ class ChampionMasteryScore {
     private Int $score;
 
     public function __construct(
-        $region,
-        $summonerId,
-        $score
+        String $region,
+        String $summonerId,
+        Int $score
     ) {
         $this->region = $region;
         $this->summonerId = $summonerId;
         $this->score = $score;
     }
 
-    public function get_region() {
+    public function get_region() : String {
         return $this->region;
     }
 
-    public function get_summonerId() {
+    public function get_summonerId() : String {
         return $this->summonerId;
     }
 
-    public function get_score() {
+    public function get_score() : Int {
         return $this->score;
     }
 }

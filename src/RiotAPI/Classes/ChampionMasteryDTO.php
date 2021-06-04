@@ -14,16 +14,16 @@ class ChampionMasteryDTO {
     private String $summonerId;
 
     public function __construct(
-        $region,
-        $championId,
-        $championLevel,
-        $championPoints,
-        $lastPlayTime,
-        $championPointsSinceLastLevel,
-        $championPointsUntilNextLevel,
-        $chestGranted,
-        $tokensEarned,
-        $summonerId
+        String $region,
+        Int $championId,
+        Int $championLevel,
+        Int $championPoints,
+        Int $lastPlayTime,
+        Int $championPointsSinceLastLevel,
+        Int $championPointsUntilNextLevel,
+        Bool $chestGranted,
+        Int $tokensEarned,
+        String $summonerId
     ) {
         $this->region = $region;
         $this->championId = $championId;
@@ -37,43 +37,43 @@ class ChampionMasteryDTO {
         $this->summonerId = $summonerId;
     }
 
-    public function get_region() {
+    public function get_region() : String {
         return $this->region;
     }
 
-    public function get_championId() {
+    public function get_championId() : Int {
         return $this->championId;
     }
 
-    public function get_championLevel() {
+    public function get_championLevel() : Int {
         return $this->championLevel;
     }
 
-    public function get_championPoints() {
+    public function get_championPoints() : Int {
         return $this->championPoints;
     }
 
-    public function get_lastPlayTime() {
+    public function get_lastPlayTime() : Int {
         return $this->lastPlayTime;
     }
 
-    public function get_championPointsSinceLastLevel() {
+    public function get_championPointsSinceLastLevel() : Int {
         return $this->championPointsSinceLastLevel;
     }
 
-    public function get_championPointsUntilNextLevel() {
+    public function get_championPointsUntilNextLevel() : Int {
         return $this->championPointsUntilNextLevel;
     }
 
-    public function get_chestGranted() {
+    public function get_chestGranted() : Bool {
         return $this->chestGranted;
     }
 
-    public function get_tokensEarned() {
+    public function get_tokensEarned() : Int {
         return $this->tokensEarned;
     }
 
-    public function get_summonerId() {
+    public function get_summonerId() : String {
         return $this->summonerId;
     }
 }

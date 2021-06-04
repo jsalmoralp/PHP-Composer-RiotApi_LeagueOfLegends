@@ -16,12 +16,12 @@ class ChampionMastery_V4 {
     private ?ChampionMasteryScore $championMasteryScore;
     
 
-    public function __construct($plataform = null) {
+    public function __construct(String $plataform = null) {
         $this->plataformRouting = new PlataformRouting($plataform);
         $this->requestToApi = new RequestToAPI();
         $this->querysChampionMastery = new ChampionMasteryDTOQuerys();
         $this->championMastery = null;
-        $this->championsMasteries = array();
+        $this->championsMasteries = null;
         $this->championMasteryScore = null;
     }
 
@@ -29,7 +29,7 @@ class ChampionMastery_V4 {
         return $this->championMastery;
     }
 
-    public function get_ChampionsMasteriesDTO() : Array {
+    public function get_ChampionsMasteriesDTO() : ?Array {
         return $this->championsMasteries;
     }
 

@@ -9,22 +9,48 @@ use jsalmoralp\RiotAPI\RiotAPI\Classes\PlataformRouting;
 class RiotAPI {
     
     private Language $language;
+    private Language $non_language;
     private PlataformRouting $plataform;
+    private PlataformRouting $non_plataform;
 
     public function __construct(
-        $lang = null,
-        $plataform = null
+        String $lang = null,
+        String $plataform = null
     ) {
         $this->language = new Language($lang);
+        if ($lang == null) {
+            $this->non_language = new Language();
+        }
         $this->plataform = new PlataformRouting($plataform);
+        if ($plataform == null) {
+            $this->non_plataform = new PlataformRouting();
+        }
     }
     
-    public function api_Summoner_V4() : Summoner_V4 {
-        return new Summoner_V4($this->plataform);
+    public function api_Summoner_V4(String $plataform = null) : Summoner_V4 {
+        if ($plataform == null) {
+            if (!isset($this->non_plataform)){
+                return new Summoner_V4($this->plataform->get_plataform());
+            } else {
+                return new Summoner_V4($this->non_plataform->get_plataform());
+            }
+        } else {
+            $plat = new PlataformRouting($plataform);
+            return new Summoner_V4($plat->get_plataform());
+        }
     }
 
-    public function api_ChampionMastery_V4() : ChampionMastery_V4 {
-        return new ChampionMastery_V4($this->plataform);
+    public function api_ChampionMastery_V4(String $plataform = null) : ChampionMastery_V4 {
+        if ($plataform == null) {
+            if (!isset($this->non_plataform)){
+                return new ChampionMastery_V4($this->plataform->get_plataform());
+            } else {
+                return new ChampionMastery_V4($this->non_plataform->get_plataform());
+            }
+        } else {
+            $plat = new PlataformRouting($plataform);
+            return new ChampionMastery_V4($plat->get_plataform());
+        }
     }
 
     /**
