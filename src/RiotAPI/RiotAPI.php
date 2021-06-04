@@ -1,10 +1,10 @@
 <?php
 namespace jsalmoralp\RiotAPI\RiotAPI;
 
+use jsalmoralp\RiotAPI\RiotAPI\Calls\ChampionMastery_V4;
 use jsalmoralp\RiotAPI\RiotAPI\Calls\Summoner_V4;
 use jsalmoralp\RiotAPI\RiotAPI\Classes\Language;
 use jsalmoralp\RiotAPI\RiotAPI\Classes\PlataformRouting;
-use jsalmoralp\RiotAPI\RiotAPI\Classes\SummonerDTO;
 
 class RiotAPI {
     
@@ -23,8 +23,8 @@ class RiotAPI {
         return new Summoner_V4($this->plataform);
     }
 
-    public function create_SummonerDTO($region, $id, $accountId, $puuid, $name, $profileIconId, $revisionDate, $summonerLevel) : SummonerDTO {
-        return new SummonerDTO($region, $id, $accountId, $puuid, $name, $profileIconId, $revisionDate, $summonerLevel);
+    public function api_ChampionMastery_V4() : ChampionMastery_V4 {
+        return new ChampionMastery_V4($this->plataform);
     }
 
     /**
