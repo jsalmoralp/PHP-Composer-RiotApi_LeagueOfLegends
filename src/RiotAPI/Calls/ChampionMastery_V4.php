@@ -1,7 +1,7 @@
 <?php
 namespace jsalmoralp\RiotAPI\RiotAPI\Calls;
 
-use jsalmoralp\RiotAPI\Native\DB\Query\ChampionMasteryDTOQuerys;
+use jsalmoralp\RiotAPI\Native\DB\Query\ChampionMasteryQuerys;
 use jsalmoralp\RiotAPI\Native\Request\RequestToAPI;
 use jsalmoralp\RiotAPI\RiotAPI\Classes\ChampionMasteryDTO;
 use jsalmoralp\RiotAPI\RiotAPI\Classes\ChampionMasteryScore;
@@ -10,16 +10,19 @@ use jsalmoralp\RiotAPI\RiotAPI\Classes\PlataformRouting;
 class ChampionMastery_V4 {
     private PlataformRouting $plataformRouting;
     private RequestToAPI $requestToApi;
-    private ChampionMasteryDTOQuerys $querysChampionMastery;
+    private ChampionMasteryQuerys $querysChampionMastery;
     private ?ChampionMasteryDTO $championMastery;
     private ?Array $championsMasteries;
     private ?ChampionMasteryScore $championMasteryScore;
     
-
-    public function __construct(String $plataform = null) {
-        $this->plataformRouting = new PlataformRouting($plataform);
+    public function __construct(String $plataformRouting = null) {
+        if ($plataformRouting) {
+            $this->plataformRouting = new PlataformRouting($plataformRouting);
+        } else {
+            $this->plataformRouting = new PlataformRouting();
+        }
         $this->requestToApi = new RequestToAPI();
-        $this->querysChampionMastery = new ChampionMasteryDTOQuerys();
+        $this->querysChampionMastery = new ChampionMasteryQuerys();
         $this->championMastery = null;
         $this->championsMasteries = null;
         $this->championMasteryScore = null;
@@ -38,6 +41,7 @@ class ChampionMastery_V4 {
     }
 
     private function prepareSql_insertIntoChampionMasteryDto_fromObject(Mixed $object) : String {
+        $this->championMastery = null;
         if (is_object($object) ) {
             if (!empty($object)) {
                 if (isset($object->status->status_code)) {
@@ -82,9 +86,8 @@ class ChampionMastery_V4 {
         }
     }
 
-
-
     private function prepareSql_insertIntoChampionMasteryDto_fromArrayOfObjects(Mixed $objects) : String {
+        $this->championsMasteries = array();
         if (is_object($objects)){
             if (isset($objects->status->status_code)) {
                 $infoString = "\n--- Info (Bad Object) ---\n";
@@ -100,8 +103,6 @@ class ChampionMastery_V4 {
             }
         } else if (is_array($objects)){
             if (!empty($objects)) {
-                unset($this->championsMasteries);
-                $this->championsMasteries = array();
                 $forReturn = "";
                 foreach ($objects as $object) {
                     $championMastery = new ChampionMasteryDTO(
@@ -138,6 +139,7 @@ class ChampionMastery_V4 {
     }
 
     private function prepareSql_insertIntoChampionMasteryScore(String $summonerId, Int $score) : String {
+        $this->championMasteryScore = null;
         if (is_object($score) ) {
             if (isset($score->status->status_code)) {
                 $infoString = "\n--- Info (Bad Object) ---\n";
@@ -170,9 +172,8 @@ class ChampionMastery_V4 {
 
     private function convertFromQueryToChampionMasteryDTO(Array $array, Bool $isMultiple = false) : String {
         if (!$isMultiple) {
-            unset($this->championMastery);
+            $this->championMastery = null;
         } else {
-            unset($this->championsMasteries);
             $this->championsMasteries = array();
         }
         foreach ($array as $clave => $valor) {
@@ -206,18 +207,33 @@ class ChampionMastery_V4 {
         return $infoString;
     }
 
-    private function convertFromQueryToChampionMasteryScore(Array $array) : String {
-        unset($this->championMasteryScore);
+    private function convertFromQueryToChampionMasteryScore(Array $array, Bool $isMultiple = false) : String {
+        if (!$isMultiple) {
+            $this->championMasteryScore = null;
+        } else {
+            $this->championMasteryScores = array();
+        }
         foreach ($array as $clave => $valor) {
-            $this->championMasteryScore = new ChampionMasteryScore(
+            $championMasteryScore = new ChampionMasteryScore(
                 $valor['region'],
                 $valor['summonerId'],
                 $valor['score']
             );
+            if (!$isMultiple) {
+                $this->championMasteryScore = $championMasteryScore;
+            } else {
+                array_push($this->championMasteryScores, $championMasteryScore);
+            }
         }
-        $infoString = "\n--- Good (Data Conversion To ChampionMasteryScore) ---\n";
-        $infoString .= "- Hemos convertido nuestra información a un objeto ChampionMasteryScore.\n";
-        $infoString .= "-------------------------\n";
+        if (!$isMultiple) {
+            $infoString = "\n--- Good (Data Conversion To ChampionMasteryScore) ---\n";
+            $infoString .= "- Hemos convertido nuestra información a un objeto ChampionMasteryScore.\n";
+            $infoString .= "-------------------------\n";
+        } else {
+            $infoString = "\n--- Good (Data Conversion To Array of ChampionMasteryScore) ---\n";
+            $infoString .= "- Hemos convertido nuestra información a un array de objetos ChampionMasteryScore.\n";
+            $infoString .= "-------------------------\n";
+        }
         return $infoString;
     }
 

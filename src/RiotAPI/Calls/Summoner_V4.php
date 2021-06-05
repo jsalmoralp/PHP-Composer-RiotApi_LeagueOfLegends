@@ -12,8 +12,12 @@ class Summoner_V4 {
     private SummonerDTOQuerys $querysSummoner;
     private ?SummonerDTO $summoner;
     
-    public function __construct(String $plataform = null) {
-        $this->plataformRouting = new PlataformRouting($plataform);
+    public function __construct(String $plataformRouting = null) {
+        if ($plataformRouting) {
+            $this->plataformRouting = new PlataformRouting($plataformRouting);
+        } else {
+            $this->plataformRouting = new PlataformRouting();
+        }
         $this->requestToApi = new RequestToAPI();
         $this->querysSummoner = new SummonerDTOQuerys();
         $this->summoner = null;
@@ -24,6 +28,7 @@ class Summoner_V4 {
     }
 
     private function prepareSql_insertInto_fromObject(Mixed $object) : String {
+        $this->summoner = null;
         if (is_object($object) ) {
             if (!empty($object)) {
                 if (isset($object->status->status_code)) {
@@ -67,6 +72,7 @@ class Summoner_V4 {
     }
 
     private function convertFromQueryToSummonerDTO(Array $array) : String {
+        $this->summoner = null;
         foreach ($array as $clave => $valor) {
             $this->summoner = new SummonerDTO(
                 $valor['region'],

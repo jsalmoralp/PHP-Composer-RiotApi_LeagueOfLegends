@@ -9,47 +9,39 @@ use jsalmoralp\RiotAPI\RiotAPI\Classes\PlataformRouting;
 class RiotAPI {
     
     private Language $language;
-    private Language $non_language;
-    private PlataformRouting $plataform;
-    private PlataformRouting $non_plataform;
+    private PlataformRouting $plataformRouting;
 
     public function __construct(
-        String $lang = null,
-        String $plataform = null
+        String $language = null,
+        String $plataformRouting = null
     ) {
-        $this->language = new Language($lang);
-        if ($lang == null) {
-            $this->non_language = new Language();
+        if ($language) {
+            $this->language = new Language($language);
+        } else {
+            $this->language = new Language();
         }
-        $this->plataform = new PlataformRouting($plataform);
-        if ($plataform == null) {
-            $this->non_plataform = new PlataformRouting();
+        if ($plataformRouting) {
+            $this->plataformRouting = new PlataformRouting($plataformRouting);
+        } else {
+            $this->plataformRouting = new PlataformRouting();
         }
     }
     
-    public function api_Summoner_V4(String $plataform = null) : Summoner_V4 {
-        if ($plataform == null) {
-            if (!isset($this->non_plataform)){
-                return new Summoner_V4($this->plataform->get_plataform());
-            } else {
-                return new Summoner_V4($this->non_plataform->get_plataform());
-            }
+    public function api_Summoner_V4(String $plataformRouting = null) : Summoner_V4 {
+        if ($plataformRouting) {
+            $plataform = new PlataformRouting($plataformRouting);
+            return new Summoner_V4($plataform->get_plataform());
         } else {
-            $plat = new PlataformRouting($plataform);
-            return new Summoner_V4($plat->get_plataform());
+            return new Summoner_V4($this->plataformRouting->get_plataform());
         }
     }
 
-    public function api_ChampionMastery_V4(String $plataform = null) : ChampionMastery_V4 {
-        if ($plataform == null) {
-            if (!isset($this->non_plataform)){
-                return new ChampionMastery_V4($this->plataform->get_plataform());
-            } else {
-                return new ChampionMastery_V4($this->non_plataform->get_plataform());
-            }
+    public function api_ChampionMastery_V4(String $plataformRouting = null) : ChampionMastery_V4 {
+        if ($plataformRouting) {
+            $plataform = new PlataformRouting($plataformRouting);
+            return new ChampionMastery_V4($plataform->get_plataform());
         } else {
-            $plat = new PlataformRouting($plataform);
-            return new ChampionMastery_V4($plat->get_plataform());
+            return new ChampionMastery_V4($this->plataformRouting->get_plataform());
         }
     }
 

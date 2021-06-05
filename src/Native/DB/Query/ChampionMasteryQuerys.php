@@ -5,7 +5,7 @@ use jsalmoralp\RiotAPI\Native\DB\ConnectionWithPDO;
 use jsalmoralp\RiotAPI\RiotAPI\Classes\ChampionMasteryDTO;
 use jsalmoralp\RiotAPI\RiotAPI\Classes\ChampionMasteryScore;
 
-class ChampionMasteryDTOQuerys {
+class ChampionMasteryQuerys {
     private ConnectionWithPDO $connection;
 
     public function __construct() {
@@ -24,7 +24,6 @@ class ChampionMasteryDTOQuerys {
         $sqlInsertIntoDatabase .= ($championMastery->get_chestGranted()?"true":"false") . ", ";
         $sqlInsertIntoDatabase .= $championMastery->get_tokensEarned() . ", ";
         $sqlInsertIntoDatabase .= "'" . $championMastery->get_summonerId() . "')";
-
         @$this->connection->execute($sqlInsertIntoDatabase);
         if (!$this->connection->get_query()) {
             $infoString = "\n--- Good (Insert To Database) ---\n";
@@ -44,7 +43,6 @@ class ChampionMasteryDTOQuerys {
         $sqlInsertIntoDatabase .= "'" . $championMasteryScore->get_region() . "', ";
         $sqlInsertIntoDatabase .= "'" . $championMasteryScore->get_summonerId() . "',";
         $sqlInsertIntoDatabase .= $championMasteryScore->get_score() . ")";
-
         @$this->connection->execute($sqlInsertIntoDatabase);
         if (!$this->connection->get_query()) {
             $infoString = "\n--- Good (Insert To Database) ---\n";
@@ -62,7 +60,7 @@ class ChampionMasteryDTOQuerys {
     public function selectAll_fromChampionMasteryDto_whereRegion_whereSummonerId(
         String $region,
         String $summonerId
-    ) {
+    ) : Array {
         $sqlIsInMyDatabase = "select * from champion_mastery_dto where ";
         $sqlIsInMyDatabase .= "region = '" . $region . "' ";
         $sqlIsInMyDatabase .= "and summonerId = '" . $summonerId . "'";
@@ -74,7 +72,7 @@ class ChampionMasteryDTOQuerys {
         String $region,
         String $summonerId,
         Int $championId
-    ) {
+    ) : Array {
         $sqlIsInMyDatabase = "select * from champion_mastery_dto where ";
         $sqlIsInMyDatabase .= "region = '" . $region . "' ";
         $sqlIsInMyDatabase .= "and summonerId = '" . $summonerId . "'";
@@ -86,7 +84,7 @@ class ChampionMasteryDTOQuerys {
     public function selectAll_fromChampionMasteryScore_whereRegion_whereSummonerId(
         String $region,
         String $summonerId
-    ) {
+    ) : Array {
         $sqlIsInMyDatabase = "select * from champion_mastery_score where ";
         $sqlIsInMyDatabase .= "region = '" . $region . "' ";
         $sqlIsInMyDatabase .= "and summonerId = '" . $summonerId . "'";

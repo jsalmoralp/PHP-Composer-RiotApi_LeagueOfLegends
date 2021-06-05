@@ -21,7 +21,6 @@ class SummonerDTOQuerys {
         $sqlInsertIntoDatabase .= $summoner->get_profileIconId() . ", ";
         $sqlInsertIntoDatabase .= $summoner->get_revisionDate() . ", ";
         $sqlInsertIntoDatabase .= $summoner->get_summonerLevel() . ")";
-
         @$this->connection->execute($sqlInsertIntoDatabase);
         if (!$this->connection->get_query()) {
             $infoString = "\n--- Good (Insert To Database) ---\n";
@@ -39,7 +38,7 @@ class SummonerDTOQuerys {
     public function selectAll_fromSummonerDto_whereRegion_whereAccountId(
         String $region,
         String $accountId
-    ) {
+    ) : Array {
         $sqlIsInMyDatabase = "select * from summoner_dto where ";
         $sqlIsInMyDatabase .= "region = '" . $region . "' ";
         $sqlIsInMyDatabase .= "and accountId = '" . $accountId . "'";
@@ -50,7 +49,7 @@ class SummonerDTOQuerys {
     public function selectAll_fromSummonerDto_whereRegion_whereName(
         String $region,
         String $name
-    ) {
+    ) : Array {
         $sqlIsInMyDatabase = "select * from summoner_dto where ";
         $sqlIsInMyDatabase .= "region = '" . $region . "' ";
         $sqlIsInMyDatabase .= "and name = '" . $name . "'";
@@ -61,7 +60,7 @@ class SummonerDTOQuerys {
     public function selectAll_fromSummonerDto_whereRegion_wherePuuid(
         String $region,
         String $puuid
-    ) {
+    ) : Array {
         $sqlIsInMyDatabase = "select * from summoner_dto where ";
         $sqlIsInMyDatabase .= "region = '" . $region . "' ";
         $sqlIsInMyDatabase .= "and puuid = '" . $puuid . "'";
@@ -72,7 +71,7 @@ class SummonerDTOQuerys {
     public function selectAll_fromSummonerDto_whereRegion_whereId(
         String $region,
         String $id
-    ) {
+    ) : Array {
         $sqlIsInMyDatabase = "select * from summoner_dto where ";
         $sqlIsInMyDatabase .= "region = '" . $region . "' ";
         $sqlIsInMyDatabase .= "and id = '" . $id . "'";

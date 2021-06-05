@@ -29,7 +29,7 @@ if ($championsMasteries1->get_ChampionsMasteriesDTO()) {
     }
     echo "\n**=** [Final] INFO CHAMPIONS MASTERIES **=**\n";
 } else {
-    echo "\n**=** NO EXISTE INFO DE CHAMPION MASTERIES **=**\n";
+    echo "\n**=** NO EXISTE INFO DE CHAMPIONS MASTERIES **=**\n";
 }
 
 echo "\n\n\n";
@@ -45,7 +45,7 @@ echo "\n**=** [Final] INFO QUERYS **=**\n";
 echo "\n";
 
 if ($championMastery2->get_ChampionMasteryDTO()) {
-    echo "\n**=** [Start] INFO CHAMPIONS MASTERIES **=**\n";
+    echo "\n**=** [Start] INFO CHAMPION MASTERY **=**\n";
 
     echo "\nChampionMastery (region)                       = " . $championMastery2->get_ChampionMasteryDTO()->get_region() . "\n";
     echo "ChampionMastery (championId)                   = " . $championMastery2->get_ChampionMasteryDTO()->get_championId() . "\n";
@@ -58,9 +58,9 @@ if ($championMastery2->get_ChampionMasteryDTO()) {
     echo "ChampionMastery (tokensEarned)                 = " . $championMastery2->get_ChampionMasteryDTO()->get_tokensEarned() . "\n";
     echo "ChampionMastery (summonerId)                   = " . $championMastery2->get_ChampionMasteryDTO()->get_summonerId() . "\n";
 
-    echo "\n**=** [Final] INFO CHAMPIONS MASTERIES **=**\n";
+    echo "\n**=** [Final] INFO CHAMPION MASTERY **=**\n";
 } else {
-    echo "\n**=** NO EXISTE INFO DE CHAMPION MASTERIES **=**\n";
+    echo "\n**=** NO EXISTE INFO DE CHAMPION MASTERY **=**\n";
 }
 
 echo "\n\n\n";
@@ -76,13 +76,13 @@ echo "\n**=** [Final] INFO QUERYS **=**\n";
 echo "\n";
 
 if ($championMasteryScore3->get_ChampionMasteryScore()) {
-    echo "\n**=** [Start] INFO CHAMPIONS MASTERIES **=**\n";
+    echo "\n**=** [Start] INFO CHAMPION MASTERY SCORE **=**\n";
 
     echo "\nChampionMasteryScore (region)     = " . $championMasteryScore3->get_ChampionMasteryScore()->get_region() . "\n";
     echo "ChampionMasteryScore (summonerId) = " . $championMasteryScore3->get_ChampionMasteryScore()->get_summonerId() . "\n";
     echo "ChampionMasteryScore (score)      = " . $championMasteryScore3->get_ChampionMasteryScore()->get_score() . "\n";
 
-    echo "\n**=** [Final] INFO CHAMPIONS MASTERIES **=**\n";
+    echo "\n**=** [Final] INFO CHAMPION MASTERY SCORE **=**\n";
 } else {
-    echo "\n**=** NO EXISTE INFO DE CHAMPION MASTERIES **=**\n";
+    echo "\n**=** NO EXISTE INFO DE CHAMPION MASTERY SCORE **=**\n";
 }
